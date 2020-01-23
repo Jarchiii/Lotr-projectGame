@@ -8,6 +8,7 @@ var diceIndication = document.querySelector("#diceIndication");
 var caseContent = document.querySelector("#caseContent");
 var diceCombatBtn = document.querySelector("#diceCombatBtn");
 var cases = document.getElementsByClassName("case");
+var begin = document.querySelector("#begin");
 
 
 
@@ -185,7 +186,7 @@ function rollDice(){
     console.log(result);
     diceResult.innerHTML = result
     console.log(`You made ${result} with the dice. You go forward ${result} case(s)!`)
-    diceIndication.innerHTML = `You made ${result} with the dice. <br><br> You go forward ${result} case(s)! <br> Pathway achievement : ${player1.index+result}/38`
+    diceIndication.innerHTML = `You made ${result} with the dice. <br><br> You go forward ${result} case(s)! <br> Pathway achievement : ${player1.index+result}/38   `
     return result
  }
 
@@ -309,6 +310,7 @@ var ans3 = document.getElementById('ans3')
 diceBtn.onclick = start;
 diceCombatBtn.hidden = true;
 
+
 function start(){
          sleep.hidden=true;
         var diceValue = rollDice();
@@ -378,7 +380,8 @@ function start(){
                             musicShire.muted=false;
                             nazgulbattle.muted=true;
                         }
-                      } 
+                      }
+                  break; 
                   case 12:
                     nazImg.hidden=false
                     pion.hidden=true;
