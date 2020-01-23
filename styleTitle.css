@@ -1,0 +1,75 @@
+body{
+    display: flex;
+    flex-direction: column;
+    justify-content:space-around;
+    align-items: center;
+    height: 725px;
+    width: 80em;
+    background-image: url(./Images/CaH.gif);
+}
+
+.bigBlock{
+    display: flex;
+    flex-direction: column;
+    justify-content:space-around;
+    align-items: center;
+    height:725px;
+    width: 100%;
+    background-color: black;
+    margin-top: 0.5em;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+
+;
+    
+}
+.blockMedium{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+
+    background-image: url(./Images/CaH.gif);
+  background-color: rgba(red, rgba(128, 0, 0, 0), blue, alpha);
+  background-clip: text;
+-webkit-background-clip: text;
+color: transparent;
+
+}
+
+.start{
+    font-family: Ringbearer;
+    font-size: 3em;
+    margin-bottom: 20%;
+}
+
+h1{
+    font-family: Ringbearer;
+    font-size: 7em;
+
+}
+
+a{
+    font-family: Tengwar Elfica;
+}
+
+#blackSpeech{
+    font-family: Ringbearer;
+}
+
+footer{
+    background-color :black;
+    width: 100%;
+    color: goldenrod;
+  
+    
+}
+
+#bigSentence{
+    font-size: 0.1em;
+
+}
+
+#nom{
+    font-family: Ringbearer ;
+}
