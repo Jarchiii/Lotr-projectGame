@@ -1,3 +1,25 @@
+
+@font-face {
+    font-family: 'Ringbearer';
+    src: url('./font/ringm___-webfont.woff2') format('woff2'),
+         url('./font/ringm___-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+@font-face {
+    font-family: 'Tengwar Elfica';
+    src: url('./font/elfica-webfont.woff2') format('woff2'),
+         url('./font/elfica-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+
 body{
     display: flex;
     flex-direction: column;
@@ -38,23 +60,23 @@ color: transparent;
 }
 
 .start{
-    font-family: Ringbearer;
+    font-family: 'Ringbearer';
     font-size: 3em;
     margin-bottom: 20%;
 }
 
 h1{
-    font-family: Ringbearer;
+    font-family: 'Ringbearer';
     font-size: 7em;
 
 }
 
 a{
-    font-family: Tengwar Elfica;
+    font-family: 'Tengwar Elfica';
 }
 
 #blackSpeech{
-    font-family: Ringbearer;
+    font-family: 'Ringbearer';
 }
 
 footer{
@@ -71,5 +93,5 @@ footer{
 }
 
 #nom{
-    font-family: Ringbearer ;
+    font-family: 'Ringbearer' ;
 }

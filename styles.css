@@ -1,3 +1,23 @@
+
+@font-face {
+    font-family: 'Ringbearer';
+    src: url('./font/ringm___-webfont.woff2') format('woff2'),
+         url('./font/ringm___-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
+@font-face {
+    font-family: 'Tengwar Elfica';
+    src: url('./font/elfica-webfont.woff2') format('woff2'),
+         url('.font/elfica-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
 header{
     height: 40px;
     width: 100%;
@@ -63,7 +83,7 @@ body {
 #diceBtn{
     background-image: url(./Images/texture-or.jpg);
     color: black;
-    font-family: Ringbearer;
+    font-family: 'Ringbearer';
     height: 50px;
     width: 200px;
     font-size: x-large;
@@ -79,7 +99,7 @@ body {
 #diceBtn:hover{
     background-image: url(./Images/CaH.gif);
     color: goldenrod;
-    font-family: Ringbearer;
+    font-family: 'Ringbearer';
     height: 50px;
     width: 200px;
     font-size: x-large;
@@ -113,7 +133,7 @@ body {
 #diceCombatBtn{
     background-image: url(./Images/texture-or.jpg);
     color: black;
-    font-family: Ringbearer;
+    font-family: 'Ringbearer';
     height: 50px;
     width: 200px;
     font-size: x-large;
@@ -129,7 +149,7 @@ body {
 #diceCombatBtn:hover{
     background-image: url(./Images/ImmaculateHandsomeEskimodog-small.gif);
     color: goldenrod;
-    font-family: Ringbearer;
+    font-family: 'Ringbearer';
     height: 50px;
     width: 200px;
     font-size: x-large;
@@ -166,7 +186,7 @@ body {
 #begin{
     background-image: url(./Images/texture-or.jpg);
     color: black;
-    font-family: Ringbearer;
+    font-family: 'Ringbearer';
     height: 50px;
     width: 200px;
     font-size: x-large;
@@ -182,7 +202,7 @@ body {
 #begin:hover{
     background-image: url(./Images/ImmaculateHandsomeEskimodog-small.gif);
     color: goldenrod;
-    font-family: Ringbearer;
+    font-family: 'Ringbearer';
     height: 50px;
     width: 200px;
     font-size: x-large;
@@ -197,7 +217,7 @@ body {
 
 #caseMessage{
     display: flex;
-    font-family: Ringbearer;
+    font-family: 'Ringbearer';
     flex-direction: column;
     background-image: url("./Images/pngfuel.com.png");
     width : 450px;
