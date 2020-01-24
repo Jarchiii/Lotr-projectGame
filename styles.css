@@ -18,6 +18,16 @@
 
 }
 
+
+@font-face {
+    font-family: 'diceregular';
+    src: url('./font/dice-webfont.woff2') format('woff2'),
+         url('./font/dice-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
 header{
     height: 40px;
     width: 100%;
@@ -117,7 +127,7 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
     color: red;
-    font-family: Ringbearer;
+    font-family: 'Ringbearer';
     height: 50px;
     width: 200px;
     font-size: small;
@@ -167,7 +177,7 @@ body {
     position: relative;
     display: flex;;
     background-color: ghostwhite;
-    font-family: dice;
+    font-family: 'diceregular';
     height: 80px;
     width: 80px ;
     justify-content: space-around;
