@@ -92,6 +92,24 @@ body {
     
 }
 
+#dicefailure{
+    background-image: url(./Images/feu\ rouge.gif);
+    background-size: cover;
+    background-repeat: no-repeat;
+    color: red;
+    font-family: Ringbearer;
+    height: 50px;
+    width: 200px;
+    font-size: small;
+    top: 30px;
+    margin-top: 70px;
+    margin-right: 32%;
+    border: solid black 2px;
+    border-radius: 20%;
+    box-shadow: 10px 5px 5px black;
+    transition-duration: 2s;
+}
+
 #diceCombatBtn{
     background-image: url(./Images/texture-or.jpg);
     color: black;
@@ -1137,7 +1155,7 @@ body {
     width: 400px;
     height: 500px;
     z-index: 3;
-    left: 500px;
+    left: 30%;
     top: 150px;
     border-radius: 10% ;
 }
@@ -1230,5 +1248,6 @@ body {
     margin-left: 15%;
     margin-right: 5% ;
     border-radius: 10% ;
+
 }
 

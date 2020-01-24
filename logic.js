@@ -8,8 +8,9 @@ var diceIndication = document.querySelector("#diceIndication");
 var caseContent = document.querySelector("#caseContent");
 var diceCombatBtn = document.querySelector("#diceCombatBtn");
 var cases = document.getElementsByClassName("case");
+ 
 var begin = document.querySelector("#begin");
-
+var failureBtn = document.querySelector("#dicefailure")
 
 
 var trollImg = document.querySelector("#trollImg");
@@ -120,7 +121,7 @@ class Question {
     }
 
 askQuestion(){
-    caseContent.innerHTML = `<a>Question time ! You can try to skip it by rolling the dice and have 4 or more.</a><br><br><a>${this.question}</a><br><br>`
+    caseContent.innerHTML += `<a>Question time ! You can try to skip (only a single try) it by rolling the dice and have 4 or more.</a><br><br><a>${this.question}</a><br><br>`
 
     return this.question    //affiche la question
 
@@ -309,6 +310,7 @@ var ans3 = document.getElementById('ans3')
 
 diceBtn.onclick = start;
 diceCombatBtn.hidden = true;
+failureBtn.hidden = true;
 
 
 function start(){
@@ -317,7 +319,7 @@ function start(){
         player1.moveForward(diceValue);
         caseContent.innerHTML =""
         if (player1.index>38){
-            gollumImg.hidden=false;
+                     gollumImg.hidden=false;
                      caseContent.innerHTML = `<br> You almost at the end of your Quest! But Gollum his on your way... <br> You will have to beat him to finish your quest! <br> You have to roll the dice again and have 3 or more to beat him.`
                      diceBtn.hidden = true;
                      diceCombatBtn.hidden = false;
@@ -361,7 +363,7 @@ function start(){
                       diceCombatBtn.onclick =function Fight() {
                         diceCombat = rollCombatDice()
                         if (diceCombat<5){
-                            caseContent.innerHTML = "The Nazgul beat you. You move back four spaces!"
+                            caseContent.innerHTML = `The Nazgul beat you. You move back four spaces! <br> Roll the dice again to continue!`
                             player1.moveBackward(4);
                             beat.play();
                             nazImg.hidden=true;
@@ -396,7 +398,7 @@ function start(){
                     diceCombatBtn.onclick =function Fight() {
                       diceCombat = rollCombatDice()
                       if (diceCombat<5){
-                          caseContent.innerHTML = "The Nazgul beat you. You move back four spaces!"
+                          caseContent.innerHTML = `The Nazgul beat you. You move back four spaces! <br> Roll the dice again to continue!`
                           player1.moveBackward(4);
                           beat.play();
                           nazImg.hidden=true;
@@ -429,7 +431,7 @@ function start(){
                       diceCombatBtn.onclick =function Fight() {
                       diceCombat = rollCombatDice()
                       if (diceCombat<4){
-                          caseContent.innerHTML = "The Troll beat you! You move back four spaces";
+                          caseContent.innerHTML = `The Troll beat you! You move back four spaces <br> Roll the dice again to continue!`;
                           player1.moveBackward(4);
                           beat.play();
                           trollImg.hidden=true;
@@ -465,7 +467,7 @@ function start(){
                           musicShire.muted=false;
                           pion.hidden=false;
                       } else {
-                          caseContent.innerHTML = `The Balrog beat you ! You move back four spaces`
+                          caseContent.innerHTML = `The Balrog beat you ! You move back four spaces <br> Roll the dice again to continue!`
                           beat.play();
                           balrogImg.hidden=true;
                           diceBtn.hidden=false;
@@ -487,7 +489,7 @@ function start(){
                        diceCombatBtn.onclick =function Fight() {
                        var diceCombat= rollDice();
                        if (diceCombat<4){
-                        caseContent.innerHTML = `The Orcs beat you!. You move back four spaces!`
+                        caseContent.innerHTML = `The Orcs beat you!. You move back four spaces! <br> Roll the dice again to continue!`
                         beat.play();
                         player1.moveBackward(4);
                         orcImg.hidden=true;
@@ -574,13 +576,50 @@ function start(){
                 questionsTable[questionIndex].askQuestion();
                 questionsTable[questionIndex].displayQcm();
                 beat.play();
-                diceBtn.hidden=false;
-                diceCombatBtn.hidden=true;} }
+                diceBtn.hidden=true;
+                diceCombatBtn.hidden=true;
+                failureBtn.hidden=false;
+                ans0 = document.getElementById('ans0')
+                ans1 = document.getElementById('ans1')
+                ans2 = document.getElementById('ans2')
+                ans3 = document.getElementById('ans3')
+                ans0.onclick = function() {
+                    questionsTable[questionIndex].checkAnswer(ans0.textContent);
+                    diceBtn.hidden= false;
+                    diceIndication.innerHTML="";
+                    diceCombatBtn.hidden=true;
+                    failureBtn.hidden=true;
+    
+                }
+                ans1.onclick = function() {
+                    questionsTable[questionIndex].checkAnswer(ans1.textContent);
+                    diceBtn.hidden= false;
+                    diceIndication.innerHTML="";
+                    diceCombatBtn.hidden=true;
+                    failureBtn.hidden=true;
+    
+                }
+                ans2.onclick = function() {
+                    questionsTable[questionIndex].checkAnswer(ans2.textContent);
+                    diceBtn.hidden= false;
+                    diceIndication.innerHTML="";
+                    diceCombatBtn.hidden=true;
+                    failureBtn.hidden=true;
+                }
+                ans3.onclick = function() {
+                    questionsTable[questionIndex].checkAnswer(ans3.textContent);
+                    diceBtn.hidden= false;
+                    diceIndication.innerHTML="";
+                    diceCombatBtn.hidden=true;
+                    failureBtn.hidden=true;
+                }
+            } }
             ans0.onclick = function() {
                 questionsTable[questionIndex].checkAnswer(ans0.textContent);
                 diceBtn.hidden= false;
                 diceIndication.innerHTML="";
                 diceCombatBtn.hidden=true;
+                failureBtn.hidden=true;
 
             }
             ans1.onclick = function() {
@@ -588,6 +627,7 @@ function start(){
                 diceBtn.hidden= false;
                 diceIndication.innerHTML="";
                 diceCombatBtn.hidden=true;
+                failureBtn.hidden=true;
 
             }
             ans2.onclick = function() {
@@ -595,12 +635,14 @@ function start(){
                 diceBtn.hidden= false;
                 diceIndication.innerHTML="";
                 diceCombatBtn.hidden=true;
+                failureBtn.hidden=true;
             }
             ans3.onclick = function() {
                 questionsTable[questionIndex].checkAnswer(ans3.textContent);
                 diceBtn.hidden= false;
                 diceIndication.innerHTML="";
                 diceCombatBtn.hidden=true;
+                failureBtn.hidden=true;
             }
             break;
             }
