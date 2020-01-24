@@ -120,7 +120,7 @@ class Question {
     }
 
 askQuestion(){
-    caseContent.innerHTML = `<a>Question time !</a><br><br><a>${this.question}</a><br><br>`
+    caseContent.innerHTML = `<a>Question time ! You can try to skip it by rolling the dice and have 4 or more.</a><br><br><a>${this.question}</a><br><br>`
 
     return this.question    //affiche la question
 
@@ -318,7 +318,7 @@ function start(){
         caseContent.innerHTML =""
         if (player1.index>38){
             gollumImg.hidden=false;
-                     caseContent.innerHTML += `<br> You almost at the end of your Quest! But Gollum his on your way... <br> You will have to beat him to finish your quest! <br> You have to roll the dice again and have 3 or more to beat him.`
+                     caseContent.innerHTML = `<br> You almost at the end of your Quest! But Gollum his on your way... <br> You will have to beat him to finish your quest! <br> You have to roll the dice again and have 3 or more to beat him.`
                      diceBtn.hidden = true;
                      diceCombatBtn.hidden = false;
                      gollum.play();
@@ -527,7 +527,7 @@ function start(){
                   break;
                   case 38 : 
                      gollumImg.hidden=false;
-                     caseContent.innerHTML += `<br> You almost at the end of your Quest! But Gollum his on your way... <br> You will have to beat him to finish your quest! <br> You have to roll the dice again and have 3 or more to beat him.`
+                     caseContent.innerHTML = `<br> You almost at the end of your Quest! But Gollum his on your way... <br> You will have to beat him to finish your quest! <br> You have to roll the dice again and have 3 or more to beat him.`
                      diceBtn.hidden = true;
                      diceCombatBtn.hidden = false;
                      gollum.play();
@@ -554,34 +554,53 @@ function start(){
             case "Question" : 
             console.log("Questions time!")
             diceBtn.hidden= true
-            var questionIndex = Math.floor(Math.random() * (questionsTable.length - 0 + 1)) + 0;
+            var questionIndex = Math.floor(Math.random() * questionsTable.length);
             questionsTable[questionIndex].askQuestion();
-            questionsTable[questionIndex].displayQcm()
+            questionsTable[questionIndex].displayQcm();
             ans0 = document.getElementById('ans0')
             ans1 = document.getElementById('ans1')
             ans2 = document.getElementById('ans2')
             ans3 = document.getElementById('ans3')
+            diceCombatBtn.hidden = false;
+            var diceCombat;
+            diceCombatBtn.onclick =function Fight() {
+            var diceCombat = rollDice();
+            if (diceCombat>4){
+                caseContent.innerHTML = `You managed to run away the question! <br> But you don't advance. <br> Roll the dice again to continue `
+                diceBtn.hidden=false;
+                diceCombatBtn.hidden=true;
+            } else {
+                caseContent.innerHTML = `You not managed to escape the question !`
+                questionsTable[questionIndex].askQuestion();
+                questionsTable[questionIndex].displayQcm();
+                beat.play();
+                diceBtn.hidden=false;
+                diceCombatBtn.hidden=true;} }
             ans0.onclick = function() {
                 questionsTable[questionIndex].checkAnswer(ans0.textContent);
                 diceBtn.hidden= false;
                 diceIndication.innerHTML="";
+                diceCombatBtn.hidden=true;
 
             }
             ans1.onclick = function() {
                 questionsTable[questionIndex].checkAnswer(ans1.textContent);
                 diceBtn.hidden= false;
                 diceIndication.innerHTML="";
+                diceCombatBtn.hidden=true;
 
             }
             ans2.onclick = function() {
                 questionsTable[questionIndex].checkAnswer(ans2.textContent);
                 diceBtn.hidden= false;
                 diceIndication.innerHTML="";
+                diceCombatBtn.hidden=true;
             }
             ans3.onclick = function() {
                 questionsTable[questionIndex].checkAnswer(ans3.textContent);
                 diceBtn.hidden= false;
                 diceIndication.innerHTML="";
+                diceCombatBtn.hidden=true;
             }
             break;
             }
