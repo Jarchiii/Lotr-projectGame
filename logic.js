@@ -121,7 +121,7 @@ class Question {
     }
 
 askQuestion(){
-    caseContent.innerHTML += `<a>Question time ! You can try to skip (only a single try) it by rolling the dice and have 4 or more.</a><br><br><a>${this.question}</a><br><br>`
+    caseContent.innerHTML += `<a>Question time ! You can try to skip (only a single try) it by rolling the dice and have 4 or more.</a><br><a id="question">${this.question}</a>`
 
     return this.question    //affiche la question
 
@@ -130,7 +130,7 @@ askQuestion(){
 displayQcm(){
     
     for (var i=0; i<this.choixReps.length; i++)
-    caseContent.innerHTML += `<li id="ans${i}">${this.choixReps[i]}</li><br>`
+    caseContent.innerHTML += `<li id="ans${i}">${this.choixReps[i]}</li>`
     return this.choixReps  // affiche le choix de réponses 
 }
 

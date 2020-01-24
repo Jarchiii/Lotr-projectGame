@@ -264,7 +264,9 @@ body {
 }
 
 
-
+#question{
+    color: red;
+}
 
 #map {
     background-image: url("./Images/map-of-middle-earth.jpg") ;
