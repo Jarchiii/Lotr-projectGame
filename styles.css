@@ -1135,7 +1135,7 @@ body {
 
 #trollImg{
     position: absolute;
-    background-image: url(./Images/Capture\ d’écran\ 2020-01-21\ à\ 17.14.22.png);
+    background-image: url(./Images/troll.png);
     background-repeat: no-repeat;
     background-size: contain;
     width: 700px;
@@ -1149,13 +1149,13 @@ body {
 
 #nazImg{
     position: absolute;
-    background-image: url(./Images/Capture\ d’écran\ 2020-01-21\ à\ 17.28.20.png) ;
+    background-image: url(./Images/naz.png) ;
     background-repeat: no-repeat;
     background-size: contain;
     width: 400px;
     height: 500px;
     z-index: 3;
-    left: 30%;
+    left: 40%;
     top: 150px;
     border-radius: 10% ;
 }
@@ -1238,7 +1238,7 @@ body {
 
 #sleep{
     position: absolute;
-    background-image: url(./Images/Capture\ d’écran\ 2020-01-23\ à\ 12.19.16.png);
+    background-image: url(./Images/sleep.png);
     background-repeat: no-repeat;
     background-size: contain;
     width: 400px;
