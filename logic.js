@@ -587,7 +587,6 @@ function start(){
             var questionIndex = Math.floor(Math.random() * questionsTable.length);
             questionsTable[questionIndex].askQuestion();
             questionsTable[questionIndex].displayQcm();
-            questionsTable.slice(questionIndex, 1)
             ans0 = document.getElementById('ans0')
             ans1 = document.getElementById('ans1')
             ans2 = document.getElementById('ans2')
@@ -595,7 +594,7 @@ function start(){
             diceCombatBtn.hidden = false;
             var diceCombat;
             diceCombatBtn.onclick =function Fight() {
-            var diceCombat = rollDice();
+            var diceCombat = rollCombatDice();
             if (diceCombat>4){
                 caseContent.innerHTML = `You managed to run away the question! <br> But you don't advance. <br> Roll the dice again to continue `
                 diceBtn.hidden=false;
