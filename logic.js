@@ -31,6 +31,8 @@ var pion=document.querySelector("#pion")
 var won=document.querySelector("#won")
 var beat=document.querySelector("#beat")
 var sleep=document.querySelector("#sleep")
+var diceSound=document.querySelector("#diceSound")
+var oliphantHorn=document.querySelector("#oliphantHorn")
 
 
 trollImg.hidden=true;
@@ -40,6 +42,7 @@ orcImg.hidden=true;
 arachneImg.hidden=true;
 gollumImg.hidden=true;
 sleep.hidden=true;
+oliphantImg.hidden=true;
 
 // Concernant le joueur
 
@@ -177,7 +180,7 @@ class Vide {
 
 // Le pion
 
-var pionCoord=["pion0", "pion1", "pion3", "pion4", "pion5", "pion6", "pion7", "pion8", "pion9", "pion10", "pion11", "pion12", "pion13", "pion14", "pion15", "pion16", "pion16", "pion17", "pion18", "pion19", "pion20", "pion21", "pion22 ", "pion23", "pion24", "pion25", "pion26", "pion27", "pion28", "pion29", "pion30", "pion31", "pion32", "pion33", "pion34", "pion35", "pion36", "pion37", "pion38" ];
+var pionCoord=["pion0", "pion1", "pion3", "pion4", "pion5", "pion6", "pion7", "pion8", "pion9", "pion10", "pion11", "pion12", "pion13", "pion14", "pion15", "pion16", "pion16", "pion17", "pion18", "pion19", "pion20", "pion21", "pion22", "pion23", "pion24", "pion25", "pion26", "pion27", "pion28", "pion29", "pion30", "pion31", "pion32", "pion33", "pion34", "pion35", "pion36", "pion37", "pion38" ];
 
 
 // le Dé
@@ -285,7 +288,7 @@ var c28= new Case (28, "Ennemi")  // Des Orcs (force4)
 var c29= new Case (29, "Question")
 var c30= new Case (30, "Vide")
 var c31= new Case (31, "Question")
-var c32= new Case (32, "Vide")
+var c32= new Case (32, "Ennemi")
 var c33= new Case (33, "Question")
 var c34= new Case (34, "Ennemi" )   // Arachne (force 5)
 var c35= new Case (35, "Question")
@@ -315,6 +318,7 @@ failureBtn.hidden = true;
 
 function start(){
          sleep.hidden=true;
+         diceSound.play();
         var diceValue = rollDice();
         player1.moveForward(diceValue);
         caseContent.innerHTML =""
@@ -504,6 +508,30 @@ function start(){
                         pion.hidden=false;
                     } }
                    break;
+                   case 32 :
+                    oliphantImg.hidden=false;
+                    oliphantHorn.play();
+                    caseContent.innerHTML += `<br> An Oliphant!!! <br> They will never believe you in the Shire! Be careful`
+                    caseContent.innerHTML += "You have to roll the dice again and have a 5 or a 6 to escape him!"
+                    diceBtn.hidden = true;
+                    diceCombatBtn.hidden = false;
+                    diceCombatBtn.onclick =function Fight() {
+                    var diceCombat;
+                    var diceCombat = rollDice()
+                   if (diceCombat<5){
+                       caseContent.innerHTML = `The oliphant beat you ! You move back four spaces`
+                       beat.play();
+                       player1.moveBackward(4);
+                       oliphantImg.hidden=true;
+                       diceBtn.hidden=false;
+                       diceCombatBtn.hidden=true;
+                   } else {
+                       caseContent.innerHTML = `You managed to run away the oliphant! <br> But you don't advance! <br> Roll the dice again to continue! `
+                       oliphantImg.hidden=true;
+                       diceBtn.hidden=false;
+                       diceCombatBtn.hidden=true;
+                   }}
+               break;
                    case 34 :
                        arachneImg.hidden=false;
                        caseContent.innerHTML += `<br> It's Arachne. <br> Be careful, her venom is very dangerous!`
@@ -559,6 +587,7 @@ function start(){
             var questionIndex = Math.floor(Math.random() * questionsTable.length);
             questionsTable[questionIndex].askQuestion();
             questionsTable[questionIndex].displayQcm();
+            questionsTable.slice(questionIndex, 1)
             ans0 = document.getElementById('ans0')
             ans1 = document.getElementById('ans1')
             ans2 = document.getElementById('ans2')
@@ -665,228 +694,277 @@ function start(){
 
         
 
-var case0 = document.querySelector(".case.zero")
-var case1 = document.querySelector(".case.one")
-var case2 = document.querySelector(".case.two")
-var case3 = document.querySelector(".case.three")
-var case4 = document.querySelector(".case.four")
-var case5 = document.querySelector(".case.five")
-var case6 = document.querySelector(".case.six")
-var case7 = document.querySelector(".case.seven")
-var case8 = document.querySelector(".case.eight")
-var case9 = document.querySelector(".case.nine")
-var case10 = document.querySelector(".case.ten")
-var case11 = document.querySelector(".case.eleven")
-var case12 = document.querySelector(".case.twelve")
-var case13 = document.querySelector(".case.thirteen")
-var case14 = document.querySelector(".case.fourteen")
-var case15 = document.querySelector(".case.fiveteen")
-var case16 = document.querySelector(".case.sixteen")
-var case17 = document.querySelector(".case.seventeen")
-var case18 = document.querySelector(".case.eighteen")
-var case19 = document.querySelector(".case.nineteen")
-var case20 = document.querySelector(".case.twenty")
-var case21 = document.querySelector(".case.twentyOne")
-var case22 = document.querySelector(".case.twentyTwo")
-var case23 = document.querySelector(".case.twentyThree")
-var case24 = document.querySelector(".case.twentyFour")
-var case25 = document.querySelector(".case.twentyFive")
-var case26 = document.querySelector(".case.twentySix")
-var case27 = document.querySelector(".case.twentySeven")
-var case28 = document.querySelector(".case.twentyEight")
-var case29 = document.querySelector(".case.twentyNine")
-var case30 = document.querySelector(".case.thirty")
-var case31 = document.querySelector(".case.thirtyOne")
-var case32 = document.querySelector(".case.thirtyTwo")
-var case33 = document.querySelector(".case.thirtyThree")
-var case34 = document.querySelector(".case.thirtyFour")
-var case35 = document.querySelector(".case.thirtyFive")
-var case36 = document.querySelector(".case.thirtySix")
-var case37 = document.querySelector(".case.thirtySeven")
-var case38 = document.querySelector(".case.thirtyEight")
+// var case0 = document.querySelector(".case.zero")
+// var case1 = document.querySelector(".case.one")
+// var case2 = document.querySelector(".case.two")
+// var case3 = document.querySelector(".case.three")
+// var case4 = document.querySelector(".case.four")
+// var case5 = document.querySelector(".case.five")
+// var case6 = document.querySelector(".case.six")
+// var case7 = document.querySelector(".case.seven")
+// var case8 = document.querySelector(".case.eight")
+// var case9 = document.querySelector(".case.nine")
+// var case10 = document.querySelector(".case.ten")
+// var case11 = document.querySelector(".case.eleven")
+// var case12 = document.querySelector(".case.twelve")
+// var case13 = document.querySelector(".case.thirteen")
+// var case14 = document.querySelector(".case.fourteen")
+// var case15 = document.querySelector(".case.fiveteen")
+// var case16 = document.querySelector(".case.sixteen")
+// var case17 = document.querySelector(".case.seventeen")
+// var case18 = document.querySelector(".case.eighteen")
+// var case19 = document.querySelector(".case.nineteen")
+// var case20 = document.querySelector(".case.twenty")
+// var case21 = document.querySelector(".case.twentyOne")
+// var case22 = document.querySelector(".case.twentyTwo")
+// var case23 = document.querySelector(".case.twentyThree")
+// var case24 = document.querySelector(".case.twentyFour")
+// var case25 = document.querySelector(".case.twentyFive")
+// var case26 = document.querySelector(".case.twentySix")
+// var case27 = document.querySelector(".case.twentySeven")
+// var case28 = document.querySelector(".case.twentyEight")
+// var case29 = document.querySelector(".case.twentyNine")
+// var case30 = document.querySelector(".case.thirty")
+// var case31 = document.querySelector(".case.thirtyOne")
+// var case32 = document.querySelector(".case.thirtyTwo")
+// var case33 = document.querySelector(".case.thirtyThree")
+// var case34 = document.querySelector(".case.thirtyFour")
+// var case35 = document.querySelector(".case.thirtyFive")
+// var case36 = document.querySelector(".case.thirtySix")
+// var case37 = document.querySelector(".case.thirtySeven")
+// var case38 = document.querySelector(".case.thirtyEight")
      
 
 
-case0.onmouseover = function Hid1(){
-     case1.hidden = true;
-     case2.hidden = true; 
-     case3.hidden = true;
-     case4.hidden = true;
-     case5.hidden = true;
-     case6.hidden = true;
-     case7.hidden = true;
-     case8.hidden = true; 
-     case9.hidden = true;
-     case10.hidden = true;
-     case11.hidden = true;
-     case12.hidden = true;
-     case13.hidden = true;
-     case14.hidden = true;
-     case15.hidden = true;
-     case16.hidden = true;
-     case17.hidden = true;
-     case18.hidden = true;
-     case19.hidden = true;
-     case20.hidden = true;
-     case21.hidden = true;
-     case22.hidden = true;
-     case23.hidden = true;
-     case24.hidden = true;
-     case25.hidden = true;
-     case26.hidden = true;
-     case27.hidden = true;
-     case28.hidden = true;
-     case29.hidden = true;
-     case30.hidden = true;
-     case31.hidden = true;
-     case32.hidden = true;
-     case33.hidden = true;
-     case34.hidden = true;
-     case35.hidden = true;
-     case36.hidden = true;
-     case37.hidden = true;
-     case38.hidden = true;
+// case0.onmouseover = function Hid1(){
+//      case1.hidden = true;
+//      case2.hidden = true; 
+//      case3.hidden = true;
+//      case4.hidden = true;
+//      case5.hidden = true;
+//      case6.hidden = true;
+//      case7.hidden = true;
+//      case8.hidden = true; 
+//      case9.hidden = true;
+//      case10.hidden = true;
+//      case11.hidden = true;
+//      case12.hidden = true;
+//      case13.hidden = true;
+//      case14.hidden = true;
+//      case15.hidden = true;
+//      case16.hidden = true;
+//      case17.hidden = true;
+//      case18.hidden = true;
+//      case19.hidden = true;
+//      case20.hidden = true;
+//      case21.hidden = true;
+//      case22.hidden = true;
+//      case23.hidden = true;
+//      case24.hidden = true;
+//      case25.hidden = true;
+//      case26.hidden = true;
+//      case27.hidden = true;
+//      case28.hidden = true;
+//      case29.hidden = true;
+//      case30.hidden = true;
+//      case31.hidden = true;
+//      case32.hidden = true;
+//      case33.hidden = true;
+//      case34.hidden = true;
+//      case35.hidden = true;
+//      case36.hidden = true;
+//      case37.hidden = true;
+//      case38.hidden = true;
 
 
 
-    }
+//     }
 
 
-    case0.onmouseleave = function show1(){
-        case1.hidden = false;
-        case2.hidden = false; 
-        case3.hidden = false;
-        case4.hidden = false;
-        case5.hidden = false;
-        case6.hidden = false;
-        case7.hidden = false;
-        case8.hidden = false; 
-        case9.hidden = false;
-        case10.hidden = false;
-        case11.hidden = false;
-        case12.hidden = false;
-        case13.hidden = false;
-        case14.hidden = false;
-        case15.hidden = false;
-        case16.hidden = false;
-        case17.hidden = false;
-        case18.hidden = false;
-        case19.hidden = false;
-        case20.hidden = false;
-        case21.hidden = false;
-        case22.hidden = false;
-        case23.hidden = false;
-        case24.hidden = false;
-        case25.hidden = false;
-        case26.hidden = false;
-        case27.hidden = false;
-        case28.hidden = false;
-        case29.hidden = false;
-        case30.hidden = false;
-        case31.hidden = false;
-        case32.hidden = false;
-        case33.hidden = false;
-        case34.hidden = false;
-        case35.hidden = false;
-        case36.hidden = false;
-        case37.hidden = false;
-        case38.hidden = false;
+//     case0.onmouseleave = function show1(){
+//         case1.hidden = false;
+//         case2.hidden = false; 
+//         case3.hidden = false;
+//         case4.hidden = false;
+//         case5.hidden = false;
+//         case6.hidden = false;
+//         case7.hidden = false;
+//         case8.hidden = false; 
+//         case9.hidden = false;
+//         case10.hidden = false;
+//         case11.hidden = false;
+//         case12.hidden = false;
+//         case13.hidden = false;
+//         case14.hidden = false;
+//         case15.hidden = false;
+//         case16.hidden = false;
+//         case17.hidden = false;
+//         case18.hidden = false;
+//         case19.hidden = false;
+//         case20.hidden = false;
+//         case21.hidden = false;
+//         case22.hidden = false;
+//         case23.hidden = false;
+//         case24.hidden = false;
+//         case25.hidden = false;
+//         case26.hidden = false;
+//         case27.hidden = false;
+//         case28.hidden = false;
+//         case29.hidden = false;
+//         case30.hidden = false;
+//         case31.hidden = false;
+//         case32.hidden = false;
+//         case33.hidden = false;
+//         case34.hidden = false;
+//         case35.hidden = false;
+//         case36.hidden = false;
+//         case37.hidden = false;
+//         case38.hidden = false;
    
    
    
-       }
+//        }
    
 
 
 
 
-       case4.onmouseover = function Hid2(){
-        case0.hidden = true; 
-        case1.hidden = true;
-        case2.hidden = true; 
-        case3.hidden = true;
-        case5.hidden = true;
-        case6.hidden = true;
-        case7.hidden = true;
-        case8.hidden = true; 
-        case9.hidden = true;
-        case10.hidden = true;
-        case11.hidden = true;
-        case12.hidden = true;
-        case13.hidden = true;
-        case14.hidden = true;
-        case15.hidden = true;
-        case16.hidden = true;
-        case17.hidden = true;
-        case18.hidden = true;
-        case19.hidden = true;
-        case20.hidden = true;
-        case21.hidden = true;
-        case22.hidden = true;
-        case23.hidden = true;
-        case24.hidden = true;
-        case25.hidden = true;
-        case26.hidden = true;
-        case27.hidden = true;
-        case28.hidden = true;
-        case29.hidden = true;
-        case30.hidden = true;
-        case31.hidden = true;
-        case32.hidden = true;
-        case33.hidden = true;
-        case34.hidden = true;
-        case35.hidden = true;
-        case36.hidden = true;
-        case37.hidden = true;
-        case38.hidden = true;
-       }
+//        case4.onmouseover = function Hid2(){
+//         case0.hidden = true; 
+//         case1.hidden = true;
+//         case2.hidden = true; 
+//         case3.hidden = true;
+//         case5.hidden = true;
+//         case6.hidden = true;
+//         case7.hidden = true;
+//         case8.hidden = true; 
+//         case9.hidden = true;
+//         case10.hidden = true;
+//         case11.hidden = true;
+//         case12.hidden = true;
+//         case13.hidden = true;
+//         case14.hidden = true;
+//         case15.hidden = true;
+//         case16.hidden = true;
+//         case17.hidden = true;
+//         case18.hidden = true;
+//         case19.hidden = true;
+//         case20.hidden = true;
+//         case21.hidden = true;
+//         case22.hidden = true;
+//         case23.hidden = true;
+//         case24.hidden = true;
+//         case25.hidden = true;
+//         case26.hidden = true;
+//         case27.hidden = true;
+//         case28.hidden = true;
+//         case29.hidden = true;
+//         case30.hidden = true;
+//         case31.hidden = true;
+//         case32.hidden = true;
+//         case33.hidden = true;
+//         case34.hidden = true;
+//         case35.hidden = true;
+//         case36.hidden = true;
+//         case37.hidden = true;
+//         case38.hidden = true;
+//        }
 
     
-        case4.onmouseleave = function show1(){
-            case0.hidden = false;
-            case1.hidden = false;
-            case2.hidden = false; 
-            case3.hidden = false;
-            case5.hidden = false;
-            case6.hidden = false;
-            case7.hidden = false;
-            case8.hidden = false; 
-            case9.hidden = false;
-            case10.hidden = false;
-            case11.hidden = false;
-            case12.hidden = false;
-            case13.hidden = false;
-            case14.hidden = false;
-            case15.hidden = false;
-            case16.hidden = false;
-            case17.hidden = false;
-            case18.hidden = false;
-            case19.hidden = false;
-            case20.hidden = false;
-            case21.hidden = false;
-            case22.hidden = false;
-            case23.hidden = false;
-            case24.hidden = false;
-            case25.hidden = false;
-            case26.hidden = false;
-            case27.hidden = false;
-            case28.hidden = false;
-            case29.hidden = false;
-            case30.hidden = false;
-            case31.hidden = false;
-            case32.hidden = false;
-            case33.hidden = false;
-            case34.hidden = false;
-            case35.hidden = false;
-            case36.hidden = false;
-            case37.hidden = false;
-            case38.hidden = false;
+//         case4.onmouseleave = function show1(){
+//             case0.hidden = false;
+//             case1.hidden = false;
+//             case2.hidden = false; 
+//             case3.hidden = false;
+//             case5.hidden = false;
+//             case6.hidden = false;
+//             case7.hidden = false;
+//             case8.hidden = false; 
+//             case9.hidden = false;
+//             case10.hidden = false;
+//             case11.hidden = false;
+//             case12.hidden = false;
+//             case13.hidden = false;
+//             case14.hidden = false;
+//             case15.hidden = false;
+//             case16.hidden = false;
+//             case17.hidden = false;
+//             case18.hidden = false;
+//             case19.hidden = false;
+//             case20.hidden = false;
+//             case21.hidden = false;
+//             case22.hidden = false;
+//             case23.hidden = false;
+//             case24.hidden = false;
+//             case25.hidden = false;
+//             case26.hidden = false;
+//             case27.hidden = false;
+//             case28.hidden = false;
+//             case29.hidden = false;
+//             case30.hidden = false;
+//             case31.hidden = false;
+//             case32.hidden = false;
+//             case33.hidden = false;
+//             case34.hidden = false;
+//             case35.hidden = false;
+//             case36.hidden = false;
+//             case37.hidden = false;
+//             case38.hidden = false;
        
        
        
-           }
+//            }
 
 
+//            case12.onmouseover =function hid3(){
+//             case0.hidden = true; 
+//         case1.hidden = true;
+//         case2.hidden = true; 
+//         case3.hidden = true;
+//         case4.hidden= true;
+//         case5.hidden = true;
+//         case6.hidden = true;
+//         case7.hidden = true;
+//         case8.hidden = true; 
+//         case9.hidden = true;
+//         case10.hidden = true;
+//         case11.hidden = true;
+//         case13.hidden = true;
+//         case14.hidden = true;
+//         case15.hidden = true;
+//         case16.hidden = true;
+//         case17.hidden = true;
+//         case18.hidden = true;
+//         case19.hidden = true;
+//         case20.hidden = true;
+//         case21.hidden = true;
+//         case22.hidden = true;
+//         case23.hidden = true;
+//         case24.hidden = true;
+//         case25.hidden = true;
+//         case26.hidden = true;
+//         case27.hidden = true;
+//         case28.hidden = true;
+//         case29.hidden = true;
+//         case30.hidden = true;
+//         case31.hidden = true;
+//         case32.hidden = true;
+//         case33.hidden = true;
+//         case34.hidden = true;
+//         case35.hidden = true;
+//         case36.hidden = true;
+//         case37.hidden = true;
+//         case38.hidden = true;
+       
+       
+       
+//            }
 
 
-
+//            case12.onmouseleave = show1
+       
+    
+    
+    
+    
+         

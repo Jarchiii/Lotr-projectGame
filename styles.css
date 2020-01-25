@@ -313,11 +313,11 @@ body {
     background-image: url(./Images/02-hobbiton.jpg);
     background-color: rgba(0,0, 0, 0);
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: cover;
     background-position: center;
-    width: 15em;
+    width: 20em;
     height: 15em ;
-    border-radius: 50%;
+    border-radius: 10%;
 
 }
 
@@ -351,12 +351,12 @@ body {
 .case.four:hover{
     background-image: url(./Images/bree_from_lotr_by_marq94.jpg);
     background-repeat: no-repeat;
-    background-size: contain;
+    background-size: cover;
     background-position: center;
     background-color: rgba(0,0, 0, 0);
-    width: 10em;
+    width: 20em;
     height: 10em ;
-    border-radius: 50%;
+    border-radius: 10%;
 }
 
 .case.five{
@@ -415,7 +415,7 @@ body {
     background-color: rgba(0,0, 0, 0);
     width: 20em;
     height: 20em ;
-    border-radius: 50%; 
+    border-radius: 20%; 
 }
 
 .case.thirteen{
@@ -455,8 +455,8 @@ body {
     background-size: contain;
     background-position: center;
     background-color: rgba(0,0, 0, 0);
-    width: 20em;
-    height: 20em ;
+    width: 25em;
+    height: 25em ;
     border-radius: 50%; 
 }
 .case.seventeen{
@@ -562,6 +562,19 @@ body {
 
 }
 
+.case.twentyEight:hover{
+    background-image: url(./Images/argonath.jpg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+    background-color: rgba(0,0, 0, 0);
+    width: 20em;
+    height: 20em ;
+    border-radius: 50%; 
+    
+    
+}
+
 .case.twentyNine{
     left: 55%;
     top :27.8%;
@@ -608,6 +621,7 @@ body {
     border-radius: 50%;
 
 }
+
 
 .case.thirtyFive{
     width: 0.5em;
@@ -1281,5 +1295,19 @@ body {
     margin-right: 5% ;
     border-radius: 10% ;
 
+}
+
+#oliphantImg{
+    position: absolute;
+    background-image: url(./Images/oliphant2.jpg);
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 400px;
+    height: 400px;
+    z-index: 5;
+    margin-top: 8%;
+    margin-left: 10%;
+    margin-right: 9% ;
+    border-radius: 14% ;
 }
 
