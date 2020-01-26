@@ -49,6 +49,8 @@ oliphantImg.hidden=true;
 class Player {
     constructor(){
         this.index = 0;
+        this.goodanswerNumber=0;
+        this.questionCount=0;
     }
     
     giveIndex(){   //donne sa position
@@ -141,6 +143,7 @@ checkAnswer(playerAnswer){
     if (playerAnswer==this.goodAnswer){
         console.log("Good Answer, well done for a Hobbit")
         caseContent.innerHTML = `   Good Answer ! <br><br> Well done for a Hobbit!<br><br> Roll the dice again too continue`
+        player1.goodanswerNumber +=1;
         return true;
 
     } else {
@@ -342,7 +345,7 @@ function start(){
                          musicShire.muted=true;
                          caseContent.innerHTML =`You managed to beat Gollum <br> You drop the Ring in the lava...<br>This is the end of Sauron and his army. <br> The Middle Earth is safe <br> You won!`
                          gollumImg.hidden=true;
-                         map.innerHTML=` <div id="party">You won ! Congratulation young Hobbit!</div>`}}
+                         map.innerHTML=` <div id="party">You won ! Congratulation young Hobbit! <br> SCORE : ${player1.goodanswerNumber}/${player1.questionCount} questions </div>`}}
         } else { 
         switch (pathway[player1.index].type) {
             case "Vide" :
@@ -365,7 +368,8 @@ function start(){
                       nazgulbattle.play();
                       var diceCombat;
                       diceCombatBtn.onclick =function Fight() {
-                        diceCombat = rollCombatDice()
+                        diceCombat = rollCombatDice();
+                        diceSound.play();
                         if (diceCombat<5){
                             caseContent.innerHTML = `The Nazgul beat you. You move back four spaces! <br> Roll the dice again to continue!`
                             player1.moveBackward(4);
@@ -400,7 +404,8 @@ function start(){
                     nazgulbattle.play();
                     var diceCombat;
                     diceCombatBtn.onclick =function Fight() {
-                      diceCombat = rollCombatDice()
+                      diceCombat = rollCombatDice();
+                      diceSound.play();
                       if (diceCombat<5){
                           caseContent.innerHTML = `The Nazgul beat you. You move back four spaces! <br> Roll the dice again to continue!`
                           player1.moveBackward(4);
@@ -433,7 +438,8 @@ function start(){
                       trollSound.play();
                       var diceCombat;
                       diceCombatBtn.onclick =function Fight() {
-                      diceCombat = rollCombatDice()
+                      diceCombat = rollCombatDice();
+                      diceSound.play();
                       if (diceCombat<4){
                           caseContent.innerHTML = `The Troll beat you! You move back four spaces <br> Roll the dice again to continue!`;
                           player1.moveBackward(4);
@@ -462,6 +468,7 @@ function start(){
                       var diceCombat;
                       diceCombatBtn.onclick =function Fight() {
                       var diceCombat = rollDice();
+                      diceSound.play();
                       if (diceCombat===6){
                           caseContent.innerHTML = `You managed to run away the Balrog! <br> But you don't advance. <br> Roll the dice again to continue `
                           balrogImg.hidden=true;
@@ -492,6 +499,7 @@ function start(){
                        var diceCombat;
                        diceCombatBtn.onclick =function Fight() {
                        var diceCombat= rollDice();
+                       diceSound.play();
                        if (diceCombat<4){
                         caseContent.innerHTML = `The Orcs beat you!. You move back four spaces! <br> Roll the dice again to continue!`
                         beat.play();
@@ -517,7 +525,8 @@ function start(){
                     diceCombatBtn.hidden = false;
                     diceCombatBtn.onclick =function Fight() {
                     var diceCombat;
-                    var diceCombat = rollDice()
+                    var diceCombat = rollDice();
+                    diceSound.play();
                    if (diceCombat<5){
                        caseContent.innerHTML = `The oliphant beat you ! You move back four spaces`
                        beat.play();
@@ -540,7 +549,8 @@ function start(){
                        diceCombatBtn.hidden = false;
                        diceCombatBtn.onclick =function Fight() {
                        var diceCombat;
-                       var diceCombat = rollDice()
+                       var diceCombat = rollDice();
+                       diceSound.play();
                       if (diceCombat<5){
                           caseContent.innerHTML = `Arachne beat you ! You move back four spaces`
                           beat.play();
@@ -562,7 +572,8 @@ function start(){
                      diceCombatBtn.hidden = false;
                      gollum.play();
                      diceCombatBtn.onclick =function Fight() {
-                     var diceCombat;
+                     var diceCombat = rollDice();
+                     diceSound.play();
                      if (diceCombat<3){
                          caseContent.innerHTML = "Gollum beat you. You move back four spaces!"
                          beat.play();
@@ -575,7 +586,7 @@ function start(){
                         musicShire.muted=true;
                          caseContent.innerHTML =`You managed to beat Gollum <br> You drop the Ring in the lava...<br>This is the end of Sauron and his army. <br> The Middle Earth is safe <br> You won!`
                          gollumImg.hidden=true;
-                         map.innerHTML=` <div id="party">You won ! Congratulation young Hobbit!</div>`
+                         map.innerHTML=` <div id="party">You won ! Congratulation young Hobbit! <br> SCORE : ${player1.goodanswerNumber}/${player1.questionCount} questions</div>`
 
                        
                     }}
@@ -584,9 +595,13 @@ function start(){
             case "Question" : 
             console.log("Questions time!")
             diceBtn.hidden= true
-            var questionIndex = Math.floor(Math.random() * questionsTable.length);
+            var questionIndex;
+            while (questionsTable[questionIndex]===undefined){
+                questionIndex = Math.floor(Math.random() * questionsTable.length);
+            }
             questionsTable[questionIndex].askQuestion();
             questionsTable[questionIndex].displayQcm();
+            player1.questionCount +=1;
             ans0 = document.getElementById('ans0')
             ans1 = document.getElementById('ans1')
             ans2 = document.getElementById('ans2')
@@ -598,6 +613,7 @@ function start(){
             if (diceCombat>4){
                 caseContent.innerHTML = `You managed to run away the question! <br> But you don't advance. <br> Roll the dice again to continue `
                 diceBtn.hidden=false;
+                delete(questionsTable[questionIndex]);
                 diceCombatBtn.hidden=true;
             } else {
                 caseContent.innerHTML = `You not managed to escape the question !`
@@ -617,7 +633,7 @@ function start(){
                     diceIndication.innerHTML="";
                     diceCombatBtn.hidden=true;
                     failureBtn.hidden=true;
-    
+                    delete(questionsTable[questionIndex]);
                 }
                 ans1.onclick = function() {
                     questionsTable[questionIndex].checkAnswer(ans1.textContent);
@@ -625,6 +641,7 @@ function start(){
                     diceIndication.innerHTML="";
                     diceCombatBtn.hidden=true;
                     failureBtn.hidden=true;
+                    delete(questionsTable[questionIndex]);
     
                 }
                 ans2.onclick = function() {
@@ -633,6 +650,7 @@ function start(){
                     diceIndication.innerHTML="";
                     diceCombatBtn.hidden=true;
                     failureBtn.hidden=true;
+                    delete(questionsTable[questionIndex]);
                 }
                 ans3.onclick = function() {
                     questionsTable[questionIndex].checkAnswer(ans3.textContent);
@@ -640,6 +658,7 @@ function start(){
                     diceIndication.innerHTML="";
                     diceCombatBtn.hidden=true;
                     failureBtn.hidden=true;
+                    delete(questionsTable[questionIndex]);
                 }
             } }
             ans0.onclick = function() {
@@ -648,6 +667,7 @@ function start(){
                 diceIndication.innerHTML="";
                 diceCombatBtn.hidden=true;
                 failureBtn.hidden=true;
+                delete(questionsTable[questionIndex]);
 
             }
             ans1.onclick = function() {
@@ -656,7 +676,7 @@ function start(){
                 diceIndication.innerHTML="";
                 diceCombatBtn.hidden=true;
                 failureBtn.hidden=true;
-
+                delete(questionsTable[questionIndex]);
             }
             ans2.onclick = function() {
                 questionsTable[questionIndex].checkAnswer(ans2.textContent);
@@ -664,6 +684,7 @@ function start(){
                 diceIndication.innerHTML="";
                 diceCombatBtn.hidden=true;
                 failureBtn.hidden=true;
+                delete(questionsTable[questionIndex]);
             }
             ans3.onclick = function() {
                 questionsTable[questionIndex].checkAnswer(ans3.textContent);
@@ -671,6 +692,7 @@ function start(){
                 diceIndication.innerHTML="";
                 diceCombatBtn.hidden=true;
                 failureBtn.hidden=true;
+                delete(questionsTable[questionIndex]);
             }
             break;
             }
